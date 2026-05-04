@@ -1,0 +1,92 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "User account information and roles",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "role": { "type": "string", "enum": ["student", "admin"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "role"]
+    },
+    "Course": {
+      "title": "Course",
+      "description": "Educational courses offered by the center",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "price": { "type": "number" },
+        "duration": { "type": "string" },
+        "thumbnail": { "type": "string" },
+        "active": { "type": "boolean" }
+      },
+      "required": ["title", "price"]
+    },
+    "Notice": {
+      "title": "Notice",
+      "description": "Dynamic announcements and updates",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "priority": { "type": "string", "enum": ["low", "medium", "high"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "content", "createdAt"]
+    },
+    "Enrollment": {
+      "title": "Enrollment",
+      "description": "Student course enrollment record",
+      "type": "object",
+      "properties": {
+        "studentId": { "type": "string" },
+        "courseId": { "type": "string" },
+        "status": { "type": "string", "enum": ["pending", "active", "completed"] },
+        "paymentStatus": { "type": "string", "enum": ["unpaid", "paid"] },
+        "enrolledAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["studentId", "courseId", "status"]
+    },
+    "Result": {
+      "title": "Result",
+      "description": "Student examination performance tracker",
+      "type": "object",
+      "properties": {
+        "studentId": { "type": "string" },
+        "courseId": { "type": "string" },
+        "examName": { "type": "string" },
+        "score": { "type": "number" },
+        "totalMarks": { "type": "number" },
+        "date": { "type": "string", "format": "date-time" }
+      },
+      "required": ["studentId", "courseId", "examName", "score"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles"
+    },
+    "/courses/{courseId}": {
+      "schema": "Course",
+      "description": "Available courses"
+    },
+    "/notices/{noticeId}": {
+      "schema": "Notice",
+      "description": "Announcements"
+    },
+    "/enrollments/{enrollmentId}": {
+      "schema": "Enrollment",
+      "description": "Course enrollments"
+    },
+    "/results/{resultId}": {
+      "schema": "Result",
+      "description": "Exam results"
+    }
+  }
+}
