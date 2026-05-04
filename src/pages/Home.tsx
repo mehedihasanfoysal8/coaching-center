@@ -327,7 +327,7 @@ export default function Home() {
                 name: "শাহ্-জালাল",
                 role: "Head of English & CEO",
                 skill: "English Grammar Specialist",
-                image: "public/shah_jalal.jpg",
+                image: "/shah_jalal.jpg",
               },
               {
                 name: "আহমেদ রাজা",
